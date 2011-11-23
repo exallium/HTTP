@@ -13,8 +13,9 @@
 // http_head
 // sends <type> request to a server
 // Simple enough.
-int http_request(struct HTTP_CONNECTION* conn, int type, char* resource, char* data) {
-    char rtype[12];
+int http_request(struct HTTP_CONNECTION* conn, 
+        struct HTTP_RESPONSE* response,
+        char* type, char* resource, char* data) {
     char *buffer;
     int len = 32 + strlen(conn->hostname) + strlen(resource);
     buffer = (char *)malloc(sizeof(char) * len);
@@ -27,19 +28,8 @@ int http_request(struct HTTP_CONNECTION* conn, int type, char* resource, char* d
         return HTTP_REQERR_NO_SLASH;
     }
 
-    switch(type) {
-        case HTTP_HEAD:
-            memcpy(rtype, "HEAD", 5);
-            break;
-        case HTTP_GET:
-            memcpy(rtype, "GET", 4);
-            break;
-        default:
-            return HTTP_REQERR_UNKNOWN_TYPE;
-    }
-
     sprintf(buffer, "%s %s HTTP/1.1\r\nHost: %s\r\n\r\n", 
-            rtype, resource, conn->hostname);
+            type, resource, conn->hostname);
 
 #ifdef DEBUG
     printf("d:http_request:generated\n%s", buffer);

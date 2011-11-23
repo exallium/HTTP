@@ -6,22 +6,28 @@ struct HTTP_CONNECTION {
     char *hostname;         // Host Name
 };
 
+struct HTTP_RESPONSE {
+    int status;
+};
+
 // Setup and Shutdown methods
 int http_connect(struct HTTP_CONNECTION* conn, char* host);
 int http_disconnect(struct HTTP_CONNECTION* conn, int flags);
 int http_clean(struct HTTP_CONNECTION* conn);
 
 // HTTP Methods
-int http_request(struct HTTP_CONNECTION* conn, int type, char* resource, char* data);
+int http_request(struct HTTP_CONNECTION* conn, 
+        struct HTTP_RESPONSE* response, 
+        char* type, char* resource, char* data);
 
 // Flags
 #define HTTP_FLAG_CLEAN 0x01
 
 // Types
-#define HTTP_HEAD   1
-#define HTTP_GET    2
-#define HTTP_POST   3
-#define HTTP_PATCH  4
+#define HTTP_HEAD   "HEAD"
+#define HTTP_GET    "GET"
+#define HTTP_POST   "POST"
+#define HTTP_PATCH  "PATCH"
 
 // Errors
 // Request Erros

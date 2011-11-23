@@ -14,6 +14,8 @@ int main(int argc, char** argv) {
     struct HTTP_CONNECTION hc;
 
     http_connect(&hc, "www.google.ca");
-    http_request(&hc, HTTP_HEAD, "/index.html", NULL);
+    http_request(&hc, NULL, HTTP_HEAD, "/index.html", NULL);
     http_disconnect(&hc, HTTP_FLAG_CLEAN);
+ 
+    return 0;
 }
