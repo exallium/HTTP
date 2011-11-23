@@ -18,7 +18,7 @@ of the API and thus should not be tampered with by the programmer. (Go to,
 though.  Your loss.)  This object then represents this connection.  A connection
 is made like so:
 
-```
+```(c)
 struct HTTP_CONNECTION hc;
 http_connect(&hc, "www.google.com"); // Will return a zero value on success
 ```
@@ -27,7 +27,7 @@ The programmer then interacts with the server, using the HTTP request method.
 Ideally, this will hand the programmer back an HTTP response object, though the
 parsing implementation for this is not written as of yet.
 
-```
+```(c)
 // Assuming we have connected as in the above example
 struct HTTP_RESPONSE hr;
 http_request(&hc, &hr, HTTP_GET, "/index.html", NULL);
