@@ -6,8 +6,16 @@ struct HTTP_CONNECTION {
     char *hostname;         // Host Name
 };
 
+struct HTTP_HEADER_NODE {
+    char *title;
+    char *data;
+    struct HTTP_HEADER_NODE *next;
+}
+
 struct HTTP_RESPONSE {
     int status;
+    struct HTTP_HEADER_NODE* header;
+    char *body;
 };
 
 // Setup and Shutdown methods
