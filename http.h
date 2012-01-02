@@ -10,7 +10,7 @@ struct HTTP_HEADER_NODE {
     char *title;
     char *data;
     struct HTTP_HEADER_NODE *next;
-}
+};
 
 struct HTTP_RESPONSE {
     int status;
