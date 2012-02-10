@@ -36,6 +36,7 @@ int http_connect(struct HTTP_CONNECTION* conn, char* host) {
 
     conn->sd = s;
     conn->hostname = (char *)malloc(sizeof(char) * strlen(host));
+    memset(conn->hostname, 0, strlen(host));
     memcpy(conn->hostname, host, strlen(host));
 
     return 0;
